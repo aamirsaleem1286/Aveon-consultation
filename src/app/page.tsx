@@ -51,6 +51,8 @@ export default function Home() {
         </div>
       </nav>
 
+      
+
       {/* Hero Section */}
       <section className="relative min-h-screen pt-20 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 opacity-40">

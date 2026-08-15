@@ -3,7 +3,6 @@
 import { useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { shaderMaterial } from "@react-three/drei";
-import { primitive } from "@react-three/fiber";
 import * as THREE from "three";
 
 const EducationObjectMaterial = shaderMaterial(

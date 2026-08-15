@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Stars, useThree } from "@react-three/drei";
+import { Stars } from "@react-three/drei";
 import * as THREE from "three";
 
 const GLOBE_VERTEX = `
@@ -263,8 +263,6 @@ function ConnectionLines({
   countries: Country[];
   radius: number;
 }) {
-  const lineRef = useRef<THREE.Line>(null);
-
   const geometry = useMemo(() => {
     const pts: THREE.Vector3[] = [];
     for (let i = 0; i < countries.length - 1; i++) {
@@ -313,9 +311,9 @@ function ConnectionLines({
   });
 
   return (
-    <line ref={lineRef} geometry={geometry}>
+    <mesh geometry={geometry}>
       <lineBasicMaterial vertexColors transparent opacity={0.6} depthWrite={false} />
-    </line>
+    </mesh>
   );
 }
 
@@ -408,7 +406,7 @@ export function GlobeCanvas({ className, radius = 2.5, rotationSpeed = 0.02 }: G
       >
         <color attach="background" args={["#0a0a0f"]} />
         <fog attach="fog" args={["#0a0a0f", 5, 15]} />
-        <Stars radius={100} depth={50} count={isMobile ? 500 : 2000} factor={4} saturation={0} opacity={0.5} />
+        <Stars radius={100} depth={50} count={isMobile ? 500 : 2000} factor={4} saturation={0} />
         <ambientLight intensity={0.5} color={0x00d4aa} />
         <directionalLight position={[5, 5, 5]} intensity={1} color={0x00ffcc} />
         <pointLight position={[-5, 3, 5]} intensity={0.5} color={0x6366f1} />

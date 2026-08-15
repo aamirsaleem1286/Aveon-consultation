@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { shaderMaterial, primitive } from "@react-three/drei";
+import { shaderMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
 const OrbMaterial = shaderMaterial(
@@ -208,7 +208,7 @@ function AIOrbScene({ size = 1.2, isListening, isSpeaking }: { size: number; isL
       if (ring && ringMaterials[i]) {
         ring.rotation.y += (i % 2 === 0 ? 0.01 : -0.01) * (isSpeaking ? 3 : isListening ? 2 : 1);
         ring.rotation.x += (i % 3 === 0 ? 0.005 : -0.005) * (isSpeaking ? 2 : 1);
-        ring.material.opacity = (isSpeaking ? 0.4 : isListening ? 0.3 : 0.15) * (0.5 + Math.sin(timeRef.current * 2 + i) * 0.3);
+        (ring.material as THREE.MeshBasicMaterial).opacity = (isSpeaking ? 0.4 : isListening ? 0.3 : 0.15) * (0.5 + Math.sin(timeRef.current * 2 + i) * 0.3);
         if (ringMaterials[i].uniforms) {
           ringMaterials[i].uniforms.uTime.value = timeRef.current;
         }
@@ -295,7 +295,7 @@ function AIOrbScene({ size = 1.2, isListening, isSpeaking }: { size: number; isL
           key={i}
           ref={(el) => { if (el) ringRefs.current[i] = el; }}
           position={[0, 0, 0]}
-          rotation={ring.rotation}
+          rotation={ring.rotation as [number, number, number]}
         >
           <torusGeometry args={[ring.radius, ring.radius * 0.02, 8, 64]} />
           <primitive object={ringMaterials[i]} attach="material" />
@@ -320,8 +320,7 @@ function AIOrbScene({ size = 1.2, isListening, isSpeaking }: { size: number; isL
       </mesh>
 
       {/* Orbiting particles */}
-      <points ref={particleRef}>
-        <primitive object={particleGeometry} attach="geometry" />
+      <points ref={particleRef} geometry={particleGeometry}>
         <pointsMaterial vertexColors size={1} transparent opacity={0.6} sizeAttenuation depthWrite={false} />
       </points>
 
@@ -339,7 +338,7 @@ function AIOrbScene({ size = 1.2, isListening, isSpeaking }: { size: number; isL
 }
 
 function PulseRing({ size }: { size: number }) {
-  const ref = useRef<THREE.Mesh>(null);
+  const ref = useRef<THREE.Mesh<THREE.RingGeometry, THREE.MeshBasicMaterial>>(null);
   const timeRef = useRef(0);
 
   const material = useMemo(() => {
@@ -363,7 +362,7 @@ function PulseRing({ size }: { size: number }) {
       timeRef.current = state.clock.getElapsedTime();
       const t = (timeRef.current * 0.5) % 1;
       ref.current.scale.setScalar(1 + t * 2);
-      ref.current.material.opacity = (1 - t) * 0.4;
+      (ref.current.material as THREE.MeshBasicMaterial).opacity = (1 - t) * 0.4;
     }
   });
 
