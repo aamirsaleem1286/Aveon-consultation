@@ -32,7 +32,7 @@ export default function Home() {
   }, []);
 
 const whatsappUrl =
-  "https://wa.me/60143675990?text=Hi%20AVEON%2C%20I'm%20interested%20in%20your%20education%20consultancy%20services.";
+  "https://wa.me/60175736456?text=Hi%20AVEON%2C%20I'm%20interested%20in%20your%20education%20consultancy%20services.";
   return (
     <div className="bg-background text-foreground overflow-hidden">
       {/* Navigation */}
@@ -318,8 +318,8 @@ const whatsappUrl =
               </div>
               <div>
                 <p className="text-foreground/60 text-sm mb-2">Email</p>
-                <p className="font-semibold">info@aveon-consultancy.com</p>
-                <p className="text-foreground/70 text-sm">queries@aveon-consultancy.com</p>
+                <p className="font-semibold">aveon.consultancy@gmail.com</p>
+                {/* <p className="text-foreground/70 text-sm">queries@aveon-consultancy.com</p> */}
               </div>
                <div>
                 <p className="text-foreground/60 text-sm mb-2">Office Hours</p>
