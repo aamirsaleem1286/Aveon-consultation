@@ -61,8 +61,8 @@ const whatsappUrl =
 
         <div className="section-container relative z-10 grid md:grid-cols-2 gap-12 items-center py-20">
           <div>
-            <h1 className="section-title text-gradient mb-6">Your Global Education Journey Starts Here</h1>
-            <p className="section-subtitle mb-8">Expert guidance and AI-powered insights to help you choose the right university, course, and study destination. Your dreams deserve the right direction.</p>
+            <h1 className="section-title text-gradient mb-6">Your Global Education Journey Starts Here with Trusted Student Recruitment.</h1>
+            <p className="section-subtitle mb-8">Expert guidance insights to help you choose the right university, course, and study destination. Your dreams deserve the right direction.</p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
